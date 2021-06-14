@@ -1,4 +1,4 @@
-﻿using DirectLife;
+﻿using DirectLife.BusinessLogic;
 using DirectLife.Data;
 using DirectLife.Interfaces;
 using FluentAssertions;
@@ -12,7 +12,7 @@ namespace _Tests.TillTests
     public class GetBasketCostTests
     {
         [Fact]
-        public void BasketIsNull_ThrowsException()
+        public void BasketIsNull_Returns0()
         {
             List<IStockItem> basket = null;
             var till = new Till();
