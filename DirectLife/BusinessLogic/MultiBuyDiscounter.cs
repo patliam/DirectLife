@@ -17,7 +17,7 @@ namespace DirectLife.BusinessLogic
         {
             if(String.IsNullOrEmpty(StockIdentifier))
             {
-                //Argument null exception would be more accurate when it is null, but added complication isn't worth the improved error (imo)
+                //Argument null exception would be more accurate when it is null, but added complication isn't worth the improved error detail (imo)
                 throw new ArgumentException("Discounts need a stock id");
             }
             if(RequiredMultiple == 0)
