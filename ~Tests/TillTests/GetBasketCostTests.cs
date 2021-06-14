@@ -16,9 +16,8 @@ namespace _Tests.TillTests
         {
             List<IStockItem> basket = null;
             var till = new Till();
-            Action action = () => till.GetBasketCost(basket);
 
-            action.Should().Throw<TillException>().WithMessage(Till.Messages.BasketIsNull);
+            till.GetBasketCost(basket).Should().Be(0);
         }
 
         [Fact]
@@ -42,6 +41,12 @@ namespace _Tests.TillTests
             };
             var till = new Till();
             till.GetBasketCost(basket).Should().Be(price1 + price2);
+        }
+
+        [Fact]
+        public void BasketMeetsOfferRequirements_DiscountApplied()
+        {
+
         }
     }
 }

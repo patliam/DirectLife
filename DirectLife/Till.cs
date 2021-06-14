@@ -10,18 +10,20 @@ namespace DirectLife
 {
     public class Till
     {
+        private List<IOfferCalculator> _calculators;
         public static class Messages
         {
             public const string BasketIsNull = "BasketIsNull";
         }
 
+        //public Till( List<IOfferCalculator> Calculators)
+        //{
+        //    _calculators = Calculators;
+        //}
+
         public decimal GetBasketCost(List<IStockItem> Basket)
         {
-            if (Basket is null)
-            {
-                throw new TillException(Messages.BasketIsNull);
-            }
-            return Basket.Sum(x => x.Price);
+            return Basket?.Sum(x => x.Price) ?? 0;
         }
     }
 }
