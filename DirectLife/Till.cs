@@ -1,5 +1,4 @@
-﻿using DirectLife.Infrastructure;
-using DirectLife.Interfaces;
+﻿using DirectLife.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +10,27 @@ namespace DirectLife
     public class Till
     {
         private List<IOfferCalculator> _calculators;
-        public static class Messages
+
+        public Till()
         {
-            public const string BasketIsNull = "BasketIsNull";
+            _calculators = new List<IOfferCalculator>();
         }
 
-        //public Till( List<IOfferCalculator> Calculators)
-        //{
-        //    _calculators = Calculators;
-        //}
-
-        public decimal GetBasketCost(List<IStockItem> Basket)
+        public Till(List<IOfferCalculator> Calculators)
         {
-            return Basket?.Sum(x => x.Price) ?? 0;
+            _calculators = Calculators;
+        }
+
+        public decimal GetBasketCost(IEnumerable<IStockItem> Basket)
+        {
+            var cost = Basket?.Sum(x => x.Price) ?? 0m;
+            var discount = 0m;
+            foreach( var calculator in _calculators )
+            {
+                discount += calculator.CalculateDiscount(Basket);
+            }
+            //Need some logic here to deal with discounts >= costs etc
+            return cost - discount;
         }
     }
 }

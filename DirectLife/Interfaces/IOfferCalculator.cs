@@ -8,6 +8,6 @@ namespace DirectLife.Interfaces
 {
     public interface IOfferCalculator
     {
-        decimal CalculateDiscount(List<IStockItem> Basket);
+        decimal CalculateDiscount(IEnumerable<IStockItem> Basket);
     }
 }
