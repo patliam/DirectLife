@@ -65,12 +65,12 @@ namespace _Tests
         }
         private IOfferCalculator CreateApplesOffer()
         {
-            return new MultiBuyDiscounter("apple", 2, 0.6m);
+            return OfferCalculatorFactory.BuyOneGetOneFree(CreateApple());
         }
 
         private IOfferCalculator CreateOrangesOffer()
         {
-            return new MultiBuyDiscounter("orange", 3,  0.25m);
+            return OfferCalculatorFactory.ThreeForTwo(CreateOrange());
         }
     }
 }
